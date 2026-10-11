@@ -1,0 +1,50 @@
+# Incidentes reais → regra → gate. Cada novo incidente vira uma entrada.
+# Origens descritas de forma genérica (sem nome de projeto ou de arquivo de terceiros).
+- id: gate-sem-comando
+  origem: projeto anterior (incidente real)
+  regra: gate bloqueante sem comando falha
+  verificacao: "scripts/gates.sh já implementa"
+- id: ux-sem-contrato
+  origem: app existente auditado pelo Raiz
+  regra: saída de UX é contrato obrigatório; tela mínima nunca vira final por omissão
+  verificacao: "existe .raiz/design/direcao.lock.md antes da primeira tela"
+- id: branch-padrao-divergente
+  origem: plugin anterior (marketplace instalava branch antiga)
+  regra: branch padrão do GitHub = branch de release
+  verificacao: "gh repo view --json defaultBranchRef"
+- id: dominio-inferido
+  origem: app publicado (404 por URL errada)
+  regra: URL de produção vem da plataforma, nunca é inferida do nome da pasta
+  verificacao: "smoke test HTTP na URL real no publicar"
+- id: default-so-conta-nova
+  origem: app com config antiga sem default
+  regra: todo default novo tem migração do estado existente
+  verificacao: "teste de merge com fixture de usuário antigo"
+- id: teto-cego-a-modelo
+  origem: projeto anterior de orquestração de agentes
+  regra: orçamento considera modelo e preço, não só tokens
+  verificacao: "revisão de código do controle de custo"
+- id: copia-morta
+  origem: repositório abandonado editado por engano
+  regra: não editar diretório sem .git e remote esperados
+  verificacao: "git rev-parse + git remote get-url"
+- id: agente-herda-modelo
+  origem: auditoria do próprio Raiz
+  regra: todo agente declara model
+  verificacao: "scripts/lint_modelos.sh"
+- id: gate-literal-contra-intencao
+  origem: auditoria de app existente (guard de confirmação decorativo)
+  regra: verificar o critério do gate, não só o texto da regra que o cita
+  verificacao: "juiz compara a exigência do gate com o mecanismo no código"
+- id: exploracao-orfa
+  origem: app auditado (diretório de exploração de design com várias direções sem decisão registrada)
+  regra: exploração de design termina em trava registrada ou descarte explícito
+  verificacao: "existe .raiz/design/direcao.lock.md ou ADR de descarte"
+- id: decisao-nao-registrada
+  origem: revisão de usabilidade do Raiz (2026-09)
+  regra: toda bifurcação (★) apresentada termina com decisao_pendente resolvida e um registro em historico_decisoes
+  verificacao: "scripts/checar_estado.sh"
+- id: regra-de-estilo-sem-gate
+  origem: app auditado (regra do kit "nenhuma tela usa cor/fonte solta" escrita só no cabeçalho do arquivo de tokens e violada várias vezes na camada de views sem gate que detectasse)
+  regra: toda regra de estilo/kit registrada em comentário ou CLAUDE.md nasce junto com um gate mecânico que a verifica — regra sem gate é regra decorativa
+  verificacao: "scripts/checar_kit.sh"

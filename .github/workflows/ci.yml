@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Agentes declaram model/effort e batem com a matriz
+        run: bash scripts/lint_modelos.sh
+      - name: Fixtures do lint_modelos
+        run: bash evals/lint_modelos/rodar.sh
+      - name: Fixtures do gates.sh
+        run: bash evals/gates/rodar.sh
+      - name: Higiene da árvore pública
+        run: bash scripts/checar_publico.sh .

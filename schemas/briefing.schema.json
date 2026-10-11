@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "briefing Raiz",
+  "type": "object",
+  "required": ["problema", "usuario", "tarefas_criticas", "restricoes", "sucesso", "completude"],
+  "properties": {
+    "problema": { "type": "string", "minLength": 20 },
+    "usuario": { "type": "string", "minLength": 10 },
+    "tarefas_criticas": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "restricoes": { "type": "array", "items": { "type": "string" } },
+    "sucesso": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "plataformas": { "type": "array", "items": { "type": "string" } },
+    "completude": { "type": "number", "minimum": 0, "maximum": 1 }
+  }
+}

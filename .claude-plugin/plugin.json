@@ -1,0 +1,21 @@
+{
+  "name": "raiz",
+  "version": "1.0.0",
+  "description": "Descobre o projeto, decide o escopo, define a direção de design e prova a fundação com gates fail-closed; também audita apps existentes.",
+  "author": {
+    "name": "Alexandre Camerini"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/AlexandreCamerini/raiz",
+  "repository": "https://github.com/AlexandreCamerini/raiz",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "agents",
+    "subagents",
+    "orchestration",
+    "design-system",
+    "quality-gates",
+    "product-discovery"
+  ]
+}

@@ -1,0 +1,5 @@
+modelos: {}
+hipoteses_iniciais:
+  alfa: sonnet/medium
+  beta sonnet-high
+metrica_principal: x

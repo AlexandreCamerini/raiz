@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "estado Raiz",
+  "type": "object",
+  "required": [
+    "versao_raiz",
+    "modo",
+    "etapa"
+  ],
+  "properties": {
+    "versao_raiz": {
+      "type": "string"
+    },
+    "modo": {
+      "enum": [
+        "novo",
+        "auditoria"
+      ]
+    },
+    "etapa": {
+      "type": "string"
+    },
+    "gates": {
+      "type": "object"
+    },
+    "atualizado_em": {
+      "type": "string"
+    },
+    "decisao_pendente": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "pergunta": {
+          "type": "string"
+        },
+        "opcoes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "resumo"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "resumo": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "pergunta",
+        "opcoes"
+      ]
+    },
+    "historico_decisoes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "data",
+          "pergunta",
+          "escolha"
+        ],
+        "properties": {
+          "data": {
+            "type": "string"
+          },
+          "pergunta": {
+            "type": "string"
+          },
+          "escolha": {
+            "type": "string"
+          },
+          "motivo": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

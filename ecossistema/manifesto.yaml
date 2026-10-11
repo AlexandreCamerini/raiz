@@ -1,0 +1,36 @@
+# MODELO — cada "<definir>" abaixo é um campo em branco para os SEUS valores. Os três itens já preenchidos em
+# `governanca` (commits_automaticos, rollback_first, escritor_unico) são premissas de operação do próprio Raiz,
+# não preferências suas; os agentes os leem como contexto, e nenhum script os aplica.
+#
+# Este arquivo guarda regras e ativos compartilhados entre os seus projetos. O arquiteto e o consultor o
+# consultam antes de decidir, e /raiz:novo usa os valores já definidos para não repetir perguntas.
+#
+# ONDE definir: neste arquivo, na cópia do plugin que a sessão está usando (o caminho é informado no início da
+# sessão). ATENÇÃO: atualizar o plugin sobrescreve a cópia instalada e apaga a sua edição. Recomendado: deixe os
+# campos como estão e informe as escolhas nas respostas do /raiz:novo, que pergunta por todo campo "<definir>".
+#
+# Regra para os agentes: o valor "<definir>" (ou campo ausente) significa "não definido". Não trate como
+# resposta nem assuma um padrão: pergunte ao usuário e confirme o que ele responder.
+#
+# Itens comentados abaixo são exemplos de formato, não recursos reais — descomente e preencha só o que
+# existir de fato para você.
+#
+# dominio: exemplo.dev                # app nasce como <slug>.exemplo.dev
+hospedagem:
+  default: "<definir>"              # onde os seus apps rodam
+  teto_gasto: "<definir>"           # ex.: obrigatorio | opcional
+  regra_persistencia: "<definir>"   # ex.: onde guardar estado (arquivo local, banco gerenciado) e com que cuidado
+plataformas:
+  alvo_principal: "<definir>"       # plataforma em que os seus apps nascem
+frontend_regra:
+  nativo: "<definir>"               # stack de app nativo na plataforma-alvo
+  web: "<definir>"                  # stack web, se houver
+  outras: "<definir>"               # outras stacks e quando exigem justificativa registrada em ADR
+# ativos_compartilhados:
+#   minha-api:      { tipo: api_http, uso: "descreva o que a API entrega e o que não reimplementar" }
+#   meu-ui-kit:     { tipo: registry_shadcn, escopo: react }
+governanca:
+  commits_automaticos: false        # o Raiz não commita sozinho
+  rollback_first: true
+  escritor_unico: claude_code
+  fluxo_pos_fundacao: "<definir>"   # como você planeja e executa o trabalho depois da fundação (ex.: por fases, kanban)

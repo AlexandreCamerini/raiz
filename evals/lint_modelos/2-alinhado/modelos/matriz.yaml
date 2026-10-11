@@ -1,0 +1,5 @@
+modelos: {}
+hipoteses_iniciais:
+  alfa: sonnet/medium  # comentario
+  beta: haiku
+metrica_principal: x

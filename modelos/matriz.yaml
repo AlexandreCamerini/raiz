@@ -1,0 +1,67 @@
+# Documentado ≠ medido. "medido" só é preenchido por evals/. Reverificar na doc antes de mudar.
+verificado_em: 2026-09-22
+fonte: https://code.claude.com/docs/en/model-config
+modelos:
+  opus:   { resolve: claude-opus-5-5, esforco: [low, medium, high, xhigh, max], esforco_default: medium, contexto: 1M, medido: {} }
+  sonnet: { resolve: claude-sonnet-5, esforco: [low, medium, high, xhigh, max], esforco_default: high, contexto: 1M, medido: {} }
+  haiku:  { resolve: claude-haiku-4-5, esforco: nao_suportado, medido: {} }
+  fable:  { resolve: claude-fable-5-1, restricao: "fora de agentes; pode cobrar créditos extras; em -p sem confirmação", medido: {} }
+hipoteses_iniciais:
+  explorador: haiku
+  arquiteto: opus/high
+  designer: opus/high
+  juiz: sonnet/high
+  construtor: sonnet/high
+  radar: sonnet/medium
+  radar-auditor: haiku
+  inventor: opus/high
+  contraditor: opus/high
+  sintetizador: sonnet/medium  # hipótese de 2026-09-26, sem medição em medium
+  prototipador: sonnet/high
+  pulso: sonnet/high
+metrica_principal: custo relativo por tarefa aceita + taxa de sucesso
+
+medicoes:
+  - id: auditoria-projeto-A-0.1.2
+    data: 2026-09-23
+    orquestrador: { modelo: claude-opus-5-5, parede_min: 17 }
+    explorador: { modelo: claude-haiku-4-5, chamadas: 1, checar_mapa: primeira }
+    juiz: { modelo: claude-sonnet-5, chamadas: 2 }
+    observacao: "amostra única; relatório de sessão não inclui subagentes"
+
+  - id: radar-agentes-ia-orquestracao-r1
+    data: 2026-09-25
+    tema: "agentes de IA e orquestração multi-agente"
+    radar: { modelo: claude-sonnet-5, effort: medium,
+      chamadas_por_lente: {
+        consolidado: { tool_uses: 15, duration_ms: 146664, subagent_tokens: 29740 },
+        fronteira:   { tool_uses: 18, duration_ms: 165458, subagent_tokens: 38879 },
+        adjacente:   { tool_uses: 16, duration_ms: 144035, subagent_tokens: 32800 },
+        ui-ux:       { tool_uses: 21, duration_ms: 236020, subagent_tokens: 41072 } } }
+    radar-auditor: { modelo: claude-haiku-4-5, chamadas: 1, tool_uses: 36, duration_ms: 511980, subagent_tokens: 41135 }
+    parede_total_ms_paralelo_lentes: 236020
+    parede_total_ms_sequencial_auditor: 511980
+    observacao: "linha de base do tema; auditor (haiku) foi o gargalo de parede, não as lentes (sonnet) em paralelo"
+
+  - id: radar-agentes-ia-orquestracao-r2
+    data: 2026-09-26
+    tema: "agentes de IA e orquestração multi-agente"
+    radar: { modelo: claude-sonnet-5, effort: medium,
+      chamadas_por_lente: {
+        consolidado: { tool_uses: 16, duration_ms: 189901, subagent_tokens: 42487 },
+        fronteira:   { tool_uses: 19, duration_ms: 219599, subagent_tokens: 48311 },
+        adjacente:   { tool_uses: 18, duration_ms: 189477, subagent_tokens: 46936 },
+        ui-ux:       { tool_uses: 24, duration_ms: 183205, subagent_tokens: 55498 } } }
+    radar-auditor: { modelo: claude-haiku-4-5, chamadas: 1, tool_uses: 39, duration_ms: 531238, subagent_tokens: 46140 }
+    parede_total_ms_paralelo_lentes: 219599
+    parede_total_ms_sequencial_auditor: 531238
+    observacao: "segunda amostra, mesmo tema: auditor (haiku) volta a ser o gargalo de parede (531s vs. 220s das lentes); tokens por lente sobem ~10-30% da r1 pra r2 sem mudança de modelo"
+
+  - id: inventor-agentes-ia-orquestracao-r1
+    data: 2026-09-26
+    tema: "agentes de IA e orquestração multi-agente"
+    inventor:     { modelo: claude-opus-5-5, effort: high, tool_uses: 5,  duration_ms: 248249, subagent_tokens: 54674 }
+    contraditor:  { modelo: claude-opus-5-5, effort: high, tool_uses: 16, duration_ms: 303326, subagent_tokens: 61993 }
+    sintetizador: { modelo: claude-sonnet-5, effort: high, tool_uses: 8,  duration_ms: 399519, subagent_tokens: 55029 }
+    parede_total_ms_sequencial: 951094
+    observacao: "sintetizador (sonnet/high) foi o mais lento em parede (399s) apesar de menos tool_uses (8) que o contraditor (16, 303s) -- não é proporcional a chamadas de ferramenta, é o tamanho da saída (INOVACAO.md + 3 apostas completas)"
