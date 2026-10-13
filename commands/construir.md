@@ -91,8 +91,10 @@ copie um nome de tela de outro projeto Raiz).
 
 ### 4. Gate de kit e build
 `bash '<scripts do plugin>/gates.sh' .raiz/gates.json`. Kit ou build falhou → devolve ao construtor
-uma vez com a saída. Falhou de novo → registra defeito no veredito e segue (mesma política de
-`checar_design.sh` em `commands/design.md:4`).
+uma vez com a saída. Gate **bloqueante** (kit e build são) falhou de novo → **pare**: registre o defeito e a
+saída do gate no veredito, reporte ao usuário e não avance para o passo 5 nem declare a fatia construída. Gate
+não bloqueante que falha de novo → registra defeito no veredito e segue (a política de `checar_design.sh` em
+`commands/design.md:4` continua sendo "registra e segue", porque aquele script não é gate bloqueante).
 
 ### 5. a11y e UI Test (opcional por rodada)
 Só bootstrap isso se a fatia desta rodada tiver uma `View` interativa que valha testar via

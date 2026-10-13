@@ -53,3 +53,9 @@
 
 ## 1.0.0
 - Raiz 1.0 — ciclo fechado num projeto novo
+
+## 1.0.1
+- construir: quando um gate bloqueante (kit ou build) falha duas vezes, o comando para e reporta, em vez de registrar a falha e seguir.
+- `.gitignore` passa a ignorar `.raiz/` (estado local do Raiz num projeto: auditorias, decisões, estado.json), para não ser versionado por engano.
+- gate de publicação (`scripts/checar_publico.sh`) mais rigoroso: reprova letras e símbolos que imitam outras letras (circuladas, romanas, de largura total, braille e afins) mesmo quando formam um termo proibido depois da normalização Unicode; reprova termos proibidos e caminhos pessoais escondidos em base64 curto (8 caracteres ou mais; segredos e e-mails em base64 só são detectados a partir de 12) e texto escondido em entidades HTML e escapes (`&#NN;`, `\uHHHH`, `\xHH`, `%HH`); reconhece mais formatos de chave e token (sk- longas, Stripe restrita e de teste, AWS temporária, GitLab, npm, Hugging Face, Azure, Bearer com JWT) e corpo de chave PEM sem cabeçalho. Limitações conhecidas: número de versão com quatro partes é tratado como endereço IP e reprova (escreva a versão com três partes); o gate é uma rede de proteção, não garantia: letras latinas acentuadas parecidas, base64 muito longo ou quebrado de formas incomuns e provedores de token fora da lista ainda podem passar, então revise o diff antes de publicar.
+- a versão sobe para o cache do plugin renovar (o cache só atualiza quando a versão muda).

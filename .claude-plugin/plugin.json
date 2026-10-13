@@ -1,6 +1,6 @@
 {
   "name": "raiz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Descobre o projeto, decide o escopo, define a direção de design e prova a fundação com gates fail-closed; também audita apps existentes.",
   "author": {
     "name": "Alexandre Camerini"

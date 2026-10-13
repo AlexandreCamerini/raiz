@@ -2,3 +2,6 @@
 *.log
 .planning/
 __pycache__/
+
+# Estado local do próprio Raiz (auditorias, decisões, estado.json): nunca versionar
+.raiz/
