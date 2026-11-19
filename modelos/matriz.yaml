@@ -1,11 +1,13 @@
 # Documentado ≠ medido. "medido" só é preenchido por evals/. Reverificar na doc antes de mudar.
-verificado_em: 2026-09-22
+# Aliases na API da Anthropic; Bedrock/Vertex/Foundry resolvem para modelos mais antigos (ver fonte).
+# As medicoes registradas até 2026-11-19 usaram claude-sonnet-5 e claude-haiku-4-5: não valem para os modelos atuais.
+verificado_em: 2026-11-19
 fonte: https://code.claude.com/docs/en/model-config
 modelos:
   opus:   { resolve: claude-opus-5-5, esforco: [low, medium, high, xhigh, max], esforco_default: medium, contexto: 1M, medido: {} }
-  sonnet: { resolve: claude-sonnet-5, esforco: [low, medium, high, xhigh, max], esforco_default: high, contexto: 1M, medido: {} }
-  haiku:  { resolve: claude-haiku-4-5, esforco: nao_suportado, medido: {} }
-  fable:  { resolve: claude-fable-5-1, restricao: "fora de agentes; pode cobrar créditos extras; em -p sem confirmação", medido: {} }
+  sonnet: { resolve: claude-sonnet-5-5, esforco: [low, medium, high, xhigh, max], esforco_default: medium, contexto: 1M, medido: {} }  # a fonte diz Sonnet 5.5 sem citar o ID completo
+  haiku:  { resolve: claude-haiku-5-5, esforco: [low, medium, high, xhigh, max], esforco_default: medium, contexto: 1M, medido: {} }
+  fable:  { resolve: claude-fable-5-1, esforco: [low, medium, high, xhigh, max], esforco_default: high, contexto: 1M, restricao: "fora de agentes; pode cobrar créditos extras; em -p sem confirmação", medido: {} }
 hipoteses_iniciais:
   explorador: haiku
   arquiteto: opus/high
