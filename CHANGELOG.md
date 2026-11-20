@@ -62,3 +62,10 @@
 
 ## 1.0.2
 - `modelos/matriz.yaml` reverificada na doc oficial (2026-11-19): `sonnet` resolve para Sonnet 5.5 (effort default `medium`); `haiku` resolve para `claude-haiku-5-5`, que agora aceita effort (default `medium`) e tem contexto de 1M; `fable` ganha a lista de effort (default `high`). As medições existentes foram feitas nos modelos anteriores e não valem para os atuais. Hipóteses de model/effort dos agentes não mudam.
+
+## 1.0.3
+- Guardrails sustentados na documentação do Claude Code (verificada em 2026-11-20), sem mudar model/effort de nenhum agente.
+- `construtor` passa a declarar `tools: Read, Grep, Glob, Edit, Write, Bash` (antes herdava tudo, inclusive web e MCP).
+- `radar` e `radar-auditor` ganham `maxTurns` como teto de segurança (50 e 60; maior uso observado: 24 e 39 chamadas).
+- `disable-model-invocation: true` em `construir`, `pulso`, `radar`, `inventar`, `prototipar`, `design`, `auditar` e `provar`: só o usuário os dispara. Também tira as descrições deles do contexto a cada turno.
+- Novo `evals/medicao/`: protocolo e modelo de registro para medir custo, tempo, atrito e aceite de ponta a ponta, com controle sem o Raiz.

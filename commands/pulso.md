@@ -1,5 +1,6 @@
 ---
 description: Pulso — analisa as medições acumuladas em modelos/matriz.yaml e recomenda troca de modelo/effort por nó quando o dado sustenta
+disable-model-invocation: true
 ---
 Sem argumentos. Roda sobre `modelos/matriz.yaml` do repositório do Raiz — não é por tema nem por projeto,
 é introspecção do próprio plugin.

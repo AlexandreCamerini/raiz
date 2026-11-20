@@ -1,5 +1,6 @@
 ---
 description: App existente — mapa do projeto e scorecard por lente, somente leitura e sempre completa
+disable-model-invocation: true
 ---
 Regra zero: **não altere nenhum arquivo do projeto**. Escreva apenas em `.raiz/`.
 Regra um: **toda auditoria é completa e independente.** Não leia auditorias anteriores (`.raiz-*`) nem reduza o escopo com base nelas.

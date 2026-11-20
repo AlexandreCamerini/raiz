@@ -1,5 +1,6 @@
 ---
 description: Direção visual — referências reais, 3 direções comparáveis, veredito do juiz e trava (subcomandos travar/rever)
+disable-model-invocation: true
 ---
 Argumentos: `$ARGUMENTS`
 

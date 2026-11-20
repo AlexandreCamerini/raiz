@@ -1,5 +1,6 @@
 ---
 description: Constrói a fatia da direção travada — tokens gerados, kit sem literal solto, gates do projeto
+disable-model-invocation: true
 ---
 Pré-requisito: `.raiz/design/direcao.lock.md` precisa existir (rode e trave `/raiz:design` antes). Sem lock, pare e diga isso.
 
