@@ -1,5 +1,6 @@
 ---
 description: Inventor — hipóteses de produto divergentes ancoradas em evidência do radar, criticadas e sintetizadas em apostas com teste de 1 dia e critério de morte
+disable-model-invocation: true
 ---
 Argumentos: `$ARGUMENTS` (tema em texto livre).
 

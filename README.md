@@ -137,10 +137,16 @@ por `scripts/radar_diff.sh`).
 - `/raiz:construir`: `xcodegen`, `xcodebuild`, `make` e `xcrun simctl` (macOS com Xcode).
 - Agentes com `Bash`: `explorador` e `juiz` (gates e comandos de verificação). O `explorador` declara também a
   ferramenta `Write` no frontmatter: ele é só leitura por **instrução** de prompt, não por restrição de
-  ferramenta. O `construtor` não declara `tools` e herda todas as ferramentas da sessão, inclusive `Bash`,
-  escrita e web.
+  ferramenta. O `construtor` declara `tools: Read, Grep, Glob, Edit, Write, Bash`: sem web e sem as ferramentas
+  de MCP da sessão.
 - **Nenhum comando declara `allowed-tools`**: os comandos `/raiz:*` rodam no thread principal, com as
   ferramentas e as permissões da sua sessão. Só os agentes declaram `tools`.
+- **Comandos que só você dispara** (`disable-model-invocation: true`): `construir`, `pulso`, `radar`, `inventar`,
+  `prototipar`, `design`, `auditar` e `provar`. Executam código do projeto, gastam minutos e tokens ou gravam
+  fora de `.raiz/`; o modelo não os carrega sozinho. `raiz`, `novo` e `consultor` continuam invocáveis pelo modelo.
+- **Teto de turnos**: `radar` (`maxTurns: 50`) e `radar-auditor` (`maxTurns: 60`) têm um limite de segurança de
+  cerca de 2× e 1,5× o maior uso observado em `modelos/matriz.yaml` (24 e 39 chamadas). É contenção de laço, não
+  otimização de desempenho; os demais agentes ainda não têm medição de turnos e ficam sem teto.
 
 ### Dado pessoal: o e-mail do git e o bundle id
 
@@ -177,9 +183,9 @@ veja acima). Nos agentes, a rede vem das ferramentas `WebSearch` e `WebFetch`:
 | `explorador` | WebSearch, WebFetch | `/raiz:design`, `/raiz:auditar` |
 | `designer` | WebSearch, WebFetch | `/raiz:design` |
 | `arquiteto` | WebSearch, WebFetch | decisões e `/raiz:consultor` |
-| `construtor` | herda as da sessão | `/raiz:construir` |
+| `construtor` | Read, Grep, Glob, Edit, Write, Bash | `/raiz:construir` |
 
-Os agentes com `Bash` (`explorador`, `juiz` e o `construtor`, que herda a ferramenta) também podem fazer
+Os agentes com `Bash` (`explorador`, `juiz` e `construtor`) também podem fazer
 requisição de rede por comando de shell, como `curl`. Os comandos instruem a não acessar serviços do próprio
 projeto (produção, staging, APIs publicadas), mas isso é só uma instrução de prompt: nada no plugin bloqueia.
 Se isso importa para você, restrinja rede e comandos com as permissões e o `/sandbox` do Claude Code.

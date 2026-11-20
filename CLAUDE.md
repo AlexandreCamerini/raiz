@@ -30,6 +30,8 @@ Teste manual: `claude --plugin-dir "$PWD"`; manifesto: `claude plugin validate "
 - Toda release sobe `version` em `.claude-plugin/plugin.json`: o cache do plugin só renova quando a versão muda.
 - Versão sempre com 3 partes; 4 partes reprova no `checar_publico.sh` (lida como IP).
 - CHANGELOG em ordem crescente: entrada nova no FIM.
+- `${CLAUDE_PLUGIN_ROOT}` só é substituído em **skills** de plugin, não em `commands/`: por isso os comandos usam `<scripts do plugin>`. Migrar para `skills/` elimina essa convenção (não feito: exige teste de carga do plugin).
+- Comandos que executam código do projeto, gastam >5 min ou gravam fora de `.raiz/` levam `disable-model-invocation: true`.
 - Comandos citam scripts como `<scripts do plugin>/x.sh` (caminho vem do `sessao.sh`); hooks usam `${CLAUDE_PLUGIN_ROOT}`. Não hardcode caminho.
 - Restrições de escrita nos comandos são instrução de prompt, não sandbox; nenhum comando declara `allowed-tools`.
 - `.raiz/` é estado local de projeto-alvo: gitignored, nunca versionar.

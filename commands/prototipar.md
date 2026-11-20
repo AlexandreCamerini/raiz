@@ -1,5 +1,6 @@
 ---
 description: Protótipo — transforma uma aposta do inventor num HTML navegável + roteiro de teste, apoio ao experimento de 1 dia, não substituto
+disable-model-invocation: true
 ---
 Argumentos: `$ARGUMENTS` (id da aposta, ex. `H-01`, ou caminho completo de `APOSTA-<id>.md`).
 

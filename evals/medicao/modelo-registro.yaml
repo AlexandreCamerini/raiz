@@ -1,0 +1,18 @@
+# Modelo de registro de uma rodada. Copie, preencha e remova os comentários.
+# Um item por rodada; repita o par A/B por tarefa (idealmente 3 vezes cada).
+- id: "<fluxo>-<tarefa>-<braco>-<n>"      # ex.: auditar-tarefa1-A-1
+  data: "AAAA-MM-DD"
+  fluxo: "<auditar|novo|design|radar|inventar|construir>"
+  braco: "<A-raiz|B-controle>"
+  tarefa: "<uma frase, sem dado privado>"
+  limiar: "<regra de decisão escrita ANTES de rodar>"
+  criterios_de_aceite:                    # booleanos, escritos antes
+    - "<critério 1>"
+  orquestrador: { modelo: "<id>", effort: "<nível>" }
+  tokens: { orquestrador: 0, subagentes: 0 }
+  parede_min: 0
+  prompts_de_permissao: 0
+  aceite: { passou: 0, total: 0 }
+  retrabalho: 0
+  custo_estimado_usd: 0                   # só comparação relativa entre braços
+  observacao: ""

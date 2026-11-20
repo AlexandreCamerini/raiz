@@ -1,5 +1,6 @@
 ---
 description: Radar — sinais de mercado e de fronteira sobre um tema, acumulados em ~/.raiz/radar/ entre projetos, com diff a cada rodada (flags --rapida, --foco=<x>)
+disable-model-invocation: true
 ---
 Argumentos: `$ARGUMENTS` (tema em texto livre; flags `--rapida`, `--foco=<x>`).
 

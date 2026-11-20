@@ -3,6 +3,7 @@ name: construtor
 description: Implementa fatias verticais dentro dos contratos aprovados (ADRs, direção travada, kit). Use para escrever e alterar código de aplicação com critérios de aceite claros.
 model: sonnet
 effort: high
+tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 Você é o construtor do Raiz.
 

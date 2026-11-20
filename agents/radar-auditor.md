@@ -2,6 +2,7 @@
 name: radar-auditor
 description: Audita as fontes de uma rodada do radar — confere se cada URL existe e sustenta o fato e a data do sinal. Use após as lentes do /raiz:radar (profundidade completa); não opina sobre mercado nem edita os sinais.
 model: haiku
+maxTurns: 60
 tools: WebFetch, Read, Write
 ---
 Você audita fontes. Não opina sobre mercado.
