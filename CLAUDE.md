@@ -19,12 +19,14 @@ Teste manual: `claude --plugin-dir "$PWD"`; manifesto: `claude plugin validate "
 
 ## Regras
 - Agente novo/alterado: declara `model` (+ `effort` se não-Haiku) e bate com `hipoteses_iniciais`; atualize também a tabela do README (o lint não cobre).
+- Fable (`fable`/`best`/`claude-fable*`) é proibido em agente (o lint reprova: cobra créditos sem prompt em subagente/`-p`). A linha `fable` em `modelos:` da matriz é só documentação; esforço alto = `opus/high`.
 - Gate bloqueante sem comando ou malformado = falha, nunca skip.
 - Mudou um script → crie/ajuste o caso em `evals/<nome>/`.
 - Model/effort só muda com medição em `medicoes` e doc oficial reverificada (atualize `verificado_em`).
 - Nada de dado pessoal/privado em fixtures, exemplos ou cicatrizes (sem caminho absoluto, e-mail, nome de projeto de terceiro).
 
 ## Gotchas
+- Haiku 5.5 aceita effort, mas o lint ainda isenta Haiku: `explorador` e `radar-auditor` rodam no default (`medium`) sem declarar. Fixar effort neles exige medição.
 - Toda release sobe `version` em `.claude-plugin/plugin.json`: o cache do plugin só renova quando a versão muda.
 - Versão sempre com 3 partes; 4 partes reprova no `checar_publico.sh` (lida como IP).
 - CHANGELOG em ordem crescente: entrada nova no FIM.
